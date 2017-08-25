@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Timer</title>
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+    <style type="text/css">
+    	.position{
+    		text-align: center;
+
+    	}
+    	 h1, p, .row {
+  text-align: center;
+  font-size: 130%;
+
+  section {
+  min-height: 90vh;
+}
+
+body {
+  position: relative;
+
+ }
+ .top-row {
+  margin-top: 50px
+}
+.bottom {
+  margin-bottom: 50px;
+}
+</style>
+
+</head>
+<body style="background-image:url(time.jpg)">
+       <div class="fluid-container" >
+
+       	<div class="row" >
+
+            <div class="col-xs-12">
+      <h1 class="position">Best Timer</h1>
+            </div>
+       </div>
+     </div>
+     <div class="row">
+    
+    <div class="col-xs-6" id="timeColumn">
+      <h2 class="position">Time</h2>
+      <h4  class="position" id="time">" "</h4>
+      <button class="position" type="button" id="timeButtonIncrease" >Increase </button>
+      <button class="position" type="button" id="timeButtonDecrease" >Decrease </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12" id="countdownColumn">
+      <h2 class="position">Attention Please Countdown Is Ready!</h2>
+      <h4 class="position" id="countdown">" "</h4>
+      <button class="position" type="button" id="countdownButton" >Start</button>
+      <button  class="position" type="button" id="countdownStopButton"  >Stop</button>
+      <button class="position" type="button" id="resetButton">Reset </button>
+    </div>
+  </div>
+  <div>
+  	<script type="text/javascript">
+  		
+ function timeIncreaseFunction () {
+   if (totalTime < 60) {
+    document.getElementById("time").innerHTML = totalTime += 1;
+    document.getElementById("countdown").innerHTML = totalCountDown = totalTime;
+    totalCountDownSeconds = totalCountDown * 60;
+  }
+ }
+ function timeDecreaseFunction () {
+  if (totalTime > 0) {
+    document.getElementById("time").innerHTML = totalTime -= 1;
+    document.getElementById("countdown").innerHTML = totalCountDown = totalTime;
+    totalCountDownSeconds = totalCountDown * 60;
+  }
+} 
+  var timer;
+   function countdownFunction (){
+ 	minutes = parseInt(totalCountDownSeconds / 60);
+  seconds = parseInt(totalCountDownSeconds % 60);
+  
+  if (totalCountDownSeconds > 0) {
+    if (seconds < 10) {
+      seconds = "0" + seconds;
+    }
+    
+    document.getElementById("countdown").innerHTML = (minutes + ":" + seconds);
+    totalCountDownSeconds -= 1;
+    timer = setTimeout(countdownFunction, 1000);
+  }
+  if (totalCountDownSeconds == 0) {
+    document.getElementById("countdown").innerHTML = " Good Bye!";
+    clearTimeout(timer);
+   
+  }
+    
+} 
+function stopFunction () {
+  clearTimeout(timer);
+ }
+function resetFunction () {
+  
+  totalTime = 5;
+  totalCountDown = totalTime;
+  totalCountDownSeconds = totalCountDown * 60;
+  
+  document.getElementById("countdown").innerHTML = totalCountDown;
+  document.getElementById("time").innerHTML = totalTime;
+  
+    
+}
+var totalTime = 5;
+var totalCountDown = totalTime;
+var totalCountDownSeconds = totalCountDown * 60;
+ document.getElementById("time").innerHTML = totalTime;
+document.getElementById("countdown").innerHTML = totalCountDown;
+var timeButtonIncrease = document.getElementById("timeButtonIncrease");
+timeButtonIncrease.addEventListener("click", timeIncreaseFunction, false);
+var timeButtonDecrease = document.getElementById("timeButtonDecrease");
+timeButtonDecrease.addEventListener("click", timeDecreaseFunction, false);
+
+var startButton = document.getElementById("countdownButton");
+startButton.addEventListener("click", countdownFunction, false);
+
+var stopButton = document.getElementById("countdownStopButton");
+stopButton.addEventListener("click", stopFunction, false);
+
+var resetButton = document.getElementById("resetButton");
+resetButton.addEventListener("click", resetFunction, false);
+
+  	</script>
+
+  </div>
+
+
+ <hr>
+<div>
+<footer  >&copy;Developed by Naveen Rathore</footer>
+</div>
+</body>
+</html>
